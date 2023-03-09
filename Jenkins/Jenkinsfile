@@ -2,14 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Starting') {
             steps {
-                echo 'Building..'
+                echo 'Code starting step..'
             }
         }
-        stage('Test') {
+        stage('Docker image') {
             steps {
-                echo 'Testing..'
+                echo 'Creating docker image'
+				script{
+					sh 'docker build -t jay96docker/testrepo .'
+				}
             }
         }
         stage('Deploy') {
